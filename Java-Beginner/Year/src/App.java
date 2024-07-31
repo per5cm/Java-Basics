@@ -3,12 +3,12 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         // Open scanner
-        Scanner scanner = new Scanner(System.in);
+        Scanner myScanner = new Scanner(System.in);
 
         // Loop to ask for year input 5 times
         for (int i = 0; i < 5; i++) {
             System.out.print("Please enter the year: ");
-            int year = scanner.nextInt();
+            int year = myScanner.nextInt();
 
             // Check for leap year
             if (year % 400 == 0) {
@@ -23,7 +23,7 @@ public class App {
         }
 
         // Close scanner
-        scanner.close();
+        myScanner.close();
     }
 }
 

@@ -18,3 +18,9 @@ Welcome to the VS Code Java world. Here is a guideline to help you get started t
     Scanner close.
 
     
+## Leap year
+
+    If the year is divisible by 400, it is a leap year.
+    If the year is divisible by 100 (but not by 400), it is not a leap year.
+    If the year is divisible by 4 (but not by 100), it is a leap year.
+    If the year does not satisfy any of the above conditions, it is not a leap year.

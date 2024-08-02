@@ -1,52 +1,60 @@
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) throws Exception {
-       Scanner myScanner = new Scanner(System.in);
-       int n;
-       StringBuffer sb;
-       String choice;
+        int n;
+        StringBuffer sb;
+        String auswahl;
+        Scanner meinScanner = new Scanner(System.in);
 
-       do {
-           System.out.println("Please Enter your shift value: ");
-           n = myScanner.nextInt();
-           myScanner.nextLine();
-       } while (n < 1 || n > 25);
+        do {
+            System.out.println("Bitte geben Sie ihren Schlüssel ein: ");
+            n = meinScanner.nextInt();
+            meinScanner.nextLine();
+        } while (n < 1 || n > 25);
 
-       System.out.println("Please enter your message: ");
-       sb = new StringBuffer(myScanner.nextLine());
+        System.out.println("Bitte geben Sie Ihren Zeichenkette ein: ");
+        sb = new StringBuffer(meinScanner.nextLine());
 
-       do {
-           System.out.println("Do you like to encrypt or decrypt message (e/d): ");
-           choice = myScanner.nextLine();
-       } while (!choice.equals("e") && !choice.equals("d"));
+        do {
+            System.out.println("Moechten Sie die Zeichenkette verschluesseln (ver) oder entschluesseln (ent)?");
+            auswahl = meinScanner.nextLine();
+        } while (!auswahl.equals("ver") && !auswahl.equals("ent"));
 
-       StringBuffer copy = new StringBuffer();
-       copy.append(sb);
+        StringBuffer kopie = new StringBuffer();
+        kopie.append(sb);
 
-       if (choice.equals("e")) {
-           for(int i = 0; i < sb.length(); i++) {
-            char currentChar = sb.charAt(i);
-            if(Character.isLetter(currentChar)){
-                char temp = (char) (currentChar+n);
-                if((temp > 'Z') && temp < '´' || (temp > 'z')) {
-                    
+        if (auswahl.equals("ver")) {
+            for (int i = 0; i < sb.length(); i++) {
+                char aktuellerChar = sb.charAt(i);
+                if (Character.isLetter(aktuellerChar)) {
+                    char temp = (char) (aktuellerChar + n);
+                    if ((temp > 'Z') && temp < '`' || (temp > 'z')) {
+                        temp = (char) (temp - 26);
+                    }
+                    kopie.setCharAt(i, temp);
                 }
-                temp = (char) (temp - 26);
+            }
+        } else {
+            for (int i = 0; i < sb.length(); i++) {
+                char aktuellerChar = sb.charAt(i);
+                if (Character.isLetter(aktuellerChar)) {
+                    char temp = (char) (aktuellerChar - n);
+                    if ((temp < 'A') || (temp < 'a' && temp > '[')) {
+                        temp = (char) (temp + 26);
+                    }
+                    kopie.setCharAt(i, temp);
+                }
             }
         }
-           System.out.println("Encrypt");
-       } else {
-        if (choice.equals("d")) {
-            for(int i = 0; i < sb.length(); i++) {
-             char currentChar = sb.charAt(i);
-             if(Character.isLetter(currentChar)){
-                 char temp = (char) (currentChar+n);
-                 if((temp > 'Z') && temp < '´' || (temp > 'z')) {
-                     
-                 }
-                 temp = (char) (temp - 26);
-             }
-         }
-           System.out.println("Decrypt");
-       }
+
+        if (auswahl.equals("ver")) {
+            System.out.println("Text verschlüsselt: " + kopie);
+            System.out.println("Text unverschlüsselt: " + sb);
+        } else {
+            System.out.println("Text unverschlüsselt: " + kopie);
+            System.out.println("Text verschlüsselt: " + sb);
+        }
+        meinScanner.close();
     }
 }
